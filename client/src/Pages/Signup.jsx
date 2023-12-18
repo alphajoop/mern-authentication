@@ -27,7 +27,7 @@ const Signup = () => {
       setLoading(true);
 
       const response = await axios.post(
-        'http://localhost:3000/auth/signup',
+        'https://mern-auth-server-alpha.vercel.app/auth/login',
         formData,
         { withCredentials: true }
       );
