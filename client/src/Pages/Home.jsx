@@ -13,7 +13,7 @@ const Home = () => {
         navigate('/login');
       }
       const { data } = await axios.post(
-        'http://localhost:3000',
+        'https://auth-nodejs-mongodb.onrender.com',
         {},
         { withCredentials: true }
       );
