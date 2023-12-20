@@ -26,7 +26,7 @@ const Login = () => {
       setLoading(true);
 
       const response = await axios.post(
-        'https://auth-nodejs-mongodb.onrender.com',
+        'https://auth-nodejs-mongodb.onrender.com/auth/login',
         formData,
         { withCredentials: true }
       );
