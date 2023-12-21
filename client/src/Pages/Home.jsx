@@ -10,16 +10,26 @@ const Home = () => {
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
+        console.log('No token found, redirecting to /login');
         navigate('/login');
       }
-      const { data } = await axios.post(
-        'https://auth-nodejs-mongodb.onrender.com',
-        {},
-        { withCredentials: true }
-      );
-      const { status, user } = data;
-      setUsername(user);
-      return !status && (removeCookie('token'), navigate('/login'));
+      try {
+        const { data } = await axios.post(
+          'https://auth-nodejs-mongodb.onrender.com',
+          {},
+          { withCredentials: true }
+        );
+        const { status, user } = data;
+        console.log('User data:', user);
+        setUsername(user);
+        if (!status) {
+          console.log('Invalid token, redirecting to /login');
+          removeCookie('token');
+          navigate('/login');
+        }
+      } catch (error) {
+        console.error('Error checking token:', error);
+      }
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie]);
