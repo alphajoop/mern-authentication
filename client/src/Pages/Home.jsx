@@ -15,7 +15,7 @@ const Home = () => {
       }
       try {
         const { data } = await axios.post(
-          'https://auth-nodejs-mongodb.onrender.com',
+          'https://auth-nodejs-mongodb.onrender.com/auth/verify',
           {},
           { withCredentials: true }
         );
